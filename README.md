@@ -1,8 +1,8 @@
-# 📈 Stock Price Prediction Model
+# 📈 Stock Price Prediction & Portfolio Optimization
 
 > 🚧 **This project is currently a work in progress.** Features, models, and documentation are actively being developed and improved.
 
-A machine learning project that predicts stock prices using multiple algorithms and includes portfolio optimization capabilities.
+A machine learning project that predicts stock prices using multiple algorithms and optimizes portfolio allocation using Modern Portfolio Theory.
 
 ## Overview
 
@@ -17,6 +17,17 @@ This project builds and compares prediction pipelines for **6 stocks** — NKE, 
 
 Models are evaluated using MAE, RMSE, MAPE, and R² on both training and validation sets.
 
+### Portfolio Optimization
+
+The project also includes a portfolio optimization module that:
+
+- Constructs a portfolio of **NVDA, IBM, JNJ, and GS** using predicted close prices
+- Computes normalized returns, weighted allocations, and position values for a $1M portfolio
+- Calculates daily returns, cumulative returns, and the **Annualized Sharpe Ratio**
+- Runs a **Monte Carlo simulation** (8,000 random portfolios) to explore the risk-return frontier
+- Uses **SciPy's SLSQP optimizer** to find the maximum-Sharpe-ratio portfolio weights
+- Visualizes optimal allocation via pie charts and portfolio performance plots
+
 ## Project Structure
 
 ```
@@ -28,16 +39,19 @@ stock_price_prediction_model/
 │   ├── evaluation.csv           # Model comparison metrics
 │   └── metrics.txt              # Detailed per-stock results
 ├── predictions/                 # Standalone prediction notebook
-├── portfolio_optimisation/      # Portfolio optimization module
+├── portfolio_optimisation/      # Portfolio optimization (Monte Carlo + SLSQP)
+│   └── portfolio_optimization.ipynb
 └── Feature_extraction/          # Feature engineering (WIP)
 ```
 
 ## Tech Stack
 
-- **Python** — pandas, NumPy, scikit-learn
+- **Python** — pandas, NumPy, seaborn
+- **scikit-learn** — Random Forest, feature selection, preprocessing
 - **XGBoost** — gradient boosting
 - **TensorFlow / Keras** — LSTM networks
-- **Matplotlib** — visualizations
+- **SciPy** — constrained optimization (SLSQP)
+- **Matplotlib / Seaborn** — visualizations
 - **yfinance** — stock data retrieval
 
 ## Getting Started
@@ -52,7 +66,7 @@ stock_price_prediction_model/
 2. **Install dependencies**
 
    ```bash
-   pip install pandas numpy scikit-learn xgboost tensorflow matplotlib yfinance
+   pip install pandas numpy scikit-learn xgboost tensorflow matplotlib seaborn scipy yfinance
    ```
 
 3. **Run the notebooks** — open any `.ipynb` file in Jupyter Notebook or VS Code.
